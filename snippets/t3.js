@@ -1,5 +1,3 @@
-Propostas = new Meteor.Collection('propostas');
-
 if (Meteor.isClient) {
     Template.hello.propostas = function() {
         return Propostas.find();
@@ -20,4 +18,3 @@ if (Meteor.isServer) {
         
     });
 }
-
