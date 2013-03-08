@@ -183,7 +183,9 @@ URL: http://code.google.com/p/html5slides/
             <article>
             	<h3>Coleções</h3>
             	<p>Do lado do servidor temos o famoso e desenvolvido MongoDB.</p>
-            	<p>Do lado do cliente, seu filho, Minimongo, que ainda não cresceu tanto.</p>                <p>Em cima disso, criou-se variáveis <i>Session</i>, com persistência fraca utilizando o minimongo.</p>
+            	<p>Do lado do cliente, seu filho, Minimongo, que ainda não cresceu tanto.</p>
+            	<p>As coleções declaradas são criadas em ambos os lados. Mas não é obrigatório.</p>
+                <p>Existem váriaveis chamadas <i>Session</i>, com persistência fraca utilizando o minimongo.</p>
             </article>
             
             <article>
@@ -193,6 +195,22 @@ URL: http://code.google.com/p/html5slides/
             		precisamos escrever
             		novamente esta expressão para que <u>a</u> valha o valor da nova soma.</p>
             	<p>Na programação reativa, <u>a</u> vale a soma entre <u>b</u> e <u>c</u> logo que <u>b</u> ou <u>c</u> são alterados, sem precisamos reavaliar a expressão.</p>
+            </article>
+            <article>
+            	<h3>Reatividade</h3>
+            	<p>Contextos reativos:</p>
+            	<ul>
+            		<li>Templates</li>
+            		<li>Meteor.render/.renderList</li>
+            		<li>Meteor.autorun</li>
+            	</ul>
+            	<p>Fontes de dados reativas:</p>
+            	<ul>
+            		<li>Variáveis de sessão</li>
+            		<li>Consultas nas coleções</li>
+            		<li>Meteor.status/.user/.userId/.loggingIn</li>
+            		<li>etc</li>
+            	</ul>
             </article>
             
             <article>
