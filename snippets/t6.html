@@ -1,0 +1,10 @@
+<ul>
+                            {{#each propostas}}
+                                <li class="well">
+                                	<h3>{{titulo}}</h3>
+                                	<img src="http://graph.facebook.com/{{criador.services.facebook.id}}/picture?type=square"
+                                	<p>Palestrante: {{criador.profile.name}}</p>
+                                	<p>Descrição: {{descricao}}</p>
+                                </li>
+                            {{/each}}
+                            </ul>

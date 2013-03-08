@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<!--
+Google HTML5 slide template
+
+Authors: Luke Mahé (code)
+Marcin Wichary (code and design)
+
+Dominic Mazzoni (browser compatibility)
+Charles Chen (ChromeVox support)
+
+URL: http://code.google.com/p/html5slides/
+-->
+
+<html>
+    <head>
+        <title>Obtenção de dados do Facebook</title>
+
+        <meta charset='utf-8'>
+        <script src='slides.js'></script>
+        <script src="jquery-1.8.0.min.js"></script>
+        <style>
+            @font-face {
+                font-family: 'Open Sans';
+                font-style: normal;
+                font-weight: 400;
+                src: local('Open Sans'), local('OpenSans'), url('1.woff') format('woff');
+            }
+            button {
+                background: #1e5799;
+                background: -moz-linear-gradient(top,  #1e5799 0%, #2989d8 50%, #207cca 51%, #7db9e8 100%);
+                background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#1e5799), color-stop(50%,#2989d8), color-stop(51%,#207cca), color-stop(100%,#7db9e8));
+                background: -webkit-linear-gradient(top,  #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%);
+                background: -o-linear-gradient(top,  #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%);
+                background: -ms-linear-gradient(top,  #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%);
+                background: linear-gradient(to bottom,  #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=0 );
+                -webkit-border-radius: 5px;
+                -moz-border-radius: 5px;
+                border-radius: 5px;
+                color: white;
+                height: 50px;
+                width: 100px;
+                font-family: 'Open Sans', Arial, sans-serif;
+                font-weight: 600;
+                font-size: 15px;
+                float: right;
+            }
+
+        </style>
+        <script type="text/javascript">
+            function print() {
+                jQuery("body").css("background", "none");
+                jQuery("article").removeClass("far-past");
+                jQuery("article").removeClass("past");
+                jQuery("article").removeClass("current");
+                jQuery("article").removeClass("next");
+                jQuery("article").removeClass("far-next");
+                jQuery("*.to-build").removeClass("to-build");
+                jQuery("article").css("display", "block");
+                jQuery("article").css("top", "0");
+                jQuery("article").css("left", "0");
+                jQuery("article").css("margin", "0 0 9em 0");
+                jQuery("article").css("position", "relative");
+            }
+
+            function get_info(div, obj) {
+                var url = "https://graph.facebook.com/" + obj;
+                jQuery.getJSON(url, function(data) {
+                    for (var i in data)
+                    jQuery(div).append('<li>' + i + ': ' + data[i] + '</li>');
+                });
+            }
+        </script>
+    </head>
+
+    <body style='display: none'>
+
+        <section class='slides layout-regular template-default'>
+            <article>
+                <h1> Hands-on: criando uma aplicação real-time com Meteor </h1>
+                <br>
+                <p>
+                    Gabriel Pugliese
+                    <br/>
+                    twitter: @gabrielsapo
+                    <br/>
+                    github: gabrielhpugliese
+                    <br/>
+                </p>
+            </article>
+
+            <article>
+                <h3> 7 princípios do Meteor </h3>
+                <img style="float: right; height: 35%; "  src="images/meteor.png" />
+                <ul>
+                    <li>
+                    	<i>Data on the Wire:</i> Não enviar HTML pela rede. Enviar dados.
+                    </li>
+                    <li>
+                    	<i>One Language:</i> Escrever Javascript no cliente e no servidor. 
+                    </li>
+                    <li>
+                    	<i>Database Everywhere:</i> Usar a mesma API para acessar o banco de dados no cliente e no servidor.
+                    </li>
+                    <li>
+                    	<i>Latency Compensation:</i> Usar <i>prefetching</i> e simulação de modelo para emular latência zero
+                    </li>
+                    <li>
+                    	<i>Full Stack Reactivity:</i> Fazer o tempo-real ser padrão.
+                    </li>
+                    <li>
+                    	<i>Embrace the Ecosystem:</i> Ser <i>open source</i> e integrar com outras ferramentas open source.
+                    </li>
+                    <li>
+                    	<i>Simplicity Equals Productivity:</i> A melhor maneira de parecer simples é ser simples.
+                    </li>
+                </ul>
+            </article>
+            
+            <article>
+                <h3>Exemplos</h3>
+                <ul>
+                	<li><b>Telescope:</b> An open-source social news app built with Meteor</li>
+                	<img style="border: 1px solid; width: 100%;" class="centered" src="images/telescope_demo.png" />
+                </ul>
+            </article>
+            
+            <article>
+                <h3>Exemplos</h3>
+                <ul>
+                    <li><b>Friend Trumps:</b> Card game based on Top Trumps.</li>
+                    <img style="border: 1px solid; width: 100%;" class="centered" src="images/friendtrumps.png" />
+                </ul>
+            </article>
+            
+
+            <article>
+                <h1>Objetivo</h1>
+                <p>
+                    Aprender Meteor copiando a tela de propostas do bonoevento
+                </p>
+            </article>
+            
+            <article>
+                <h1>Cold Start</h1>
+                <p>
+                    Criando e rodando um projeto na linha de comando (Linux)
+                </p>
+            </article>
+
+            <article>
+                <h3>Conceitos básicos</h3>
+                <ul>
+                	<li>Meteor: funções e atributos</li>
+                	<li>Template Helpers</li>
+                	<li>Template Events</li>
+                	<li>Handlebars</li>
+                	<li>Código do servidor (Node.js + Fibers): não é como <i>async callbacks</i> mas thread única por request</li>
+                	<li>Código do cliente: empacotado e minificado (em produção)</li>
+                </ul>
+            </article>
+
+            <article>
+                <h3>Linha de comando</h3>
+                <ul>
+                	<li>meteor create</li>
+                	<li>meteor run</li>
+                	<li>
+                	   meteor add <i>package</i>
+                		<ul>
+                			<li>jquery</li>
+                			<li>bootstrap</li>
+                			<li>underscore</li>
+                			<li>coffeescript</li>
+                			<li><b>accounts-ui</b></li>
+                		</ul>
+                	</li>
+                	
+                </ul>
+            </article>
+
+            <article>
+            	<h1>Hands-on</h1>
+            	<p>Let's cook!</p>
+            </article>
+
+            <article>
+                <h2>Obrigado</h2>
+                <ul>
+                    <li>
+                        <a target="_blank" href="http://docs.meteor.com">meteor.com</a>
+                    </li>
+                    <li>
+                        <a target="_blank" href="https://www.friendtrumps.com">friendtrumps.com</a>
+                    </li>
+                    <li>
+                        <a target="_blank" href="http://telesc.pe/">telesc.pe</a>
+                    </li>
+                    <li>
+                        <a target="_blank" href="http://www.eventedmind.com/">eventedmind.com</a> - Vídeos avançados
+                    </li>
+                </ul>
+            </article>
+        </section>
+    </body>
+</html>
