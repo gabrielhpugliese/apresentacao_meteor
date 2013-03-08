@@ -1,17 +1,21 @@
-<header>
-    <div class="navbar">
-        <div class="navbar-inner">
-            <div class="container-fluid">
-                <h1 class="brand"><a class="brand" href="http://bonoevento.com/">bonoevento</a></h1>
-
-                <div class="pull-right">
-                	<!--- 148482331982978 - 65d6c4283930523025699338dedb78b4 --->
-                    {{loginButtons}}
-                </div>
-
-                <div class="modal fade hide" id="myModal"></div>
-
-            </div>
-        </div>
-    </div>
-</header>
+<h2>Propostas de palestras</h2>
+<ul>
+    {{#each propostas}}
+    <li class="well" id={{_id}}>
+        <h3>{{titulo}}</h3>
+        <!-- <p>
+            <img src="http://graph.facebook.com/{{criador.services.facebook.id}}/picture?type=square"
+        </p>
+        <p>
+            Palestrante: {{criador.profile.name}}
+        </p> -->
+        <p>
+            Descrição: {{descricao}}
+        </p>
+        <button class="btn btn-success like">Like</button>
+        {{like}}
+        <button class="btn btn-danger dislike">Dislike</button>
+        {{dislike}}
+    </li>
+    {{/each}}
+</ul>
