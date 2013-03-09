@@ -17,8 +17,8 @@ if (Meteor.isServer) {
             });
         },
         votar : function (proposta_id, voto) {
-            if (!Meteor.user())
-                return;
+            // if (!Meteor.user())
+                // return;
                 
             var inc = {};
             inc[voto.toString()] = 1;

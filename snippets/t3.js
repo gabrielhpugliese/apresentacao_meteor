@@ -1,7 +1,4 @@
 if (Meteor.isClient) {
-    Template.hello.propostas = function() {
-        return Propostas.find();
-    }
 
     Template.hello.events({
         'click button[type=submit]' : function(event) {
